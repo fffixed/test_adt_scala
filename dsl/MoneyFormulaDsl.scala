@@ -57,6 +57,10 @@ object MoneyFormulaDsl {
         }
     }
 
+    def +(x: Double): AlmostMoney = this.+(Number(x))
+    def -(x: Double): AlmostMoney = this.+(Number(x))
+    def *(x: Double): AlmostMoney = this.+(Number(x))
+    def /(x: Double): AlmostMoney = this.+(Number(x))
   }
 
   case class Money(amount: Double) extends AlmostMoney {
@@ -100,6 +104,7 @@ object MoneyFormulaDsl {
 
 
   object F {
+    def apply(x: MoneyFormula): MoneyFormula = MoneyFormula(x)
     def apply(x: AlmostMoney): MoneyFormula = MoneyFormula(x)
     def apply(x: Double): MoneyFormula = MoneyFormula(x.n)
     def apply(x: String): MoneyFormula = MoneyFormula(x)
@@ -123,6 +128,7 @@ object MoneyFormulaDsl {
 
   object MoneyFormula {
 
+    def apply(x: MoneyFormula): MoneyFormula = x
     def apply(x: AlmostMoney): MoneyFormula = MoneyFormula.Const(x)
     def apply(x: Double): MoneyFormula = MoneyFormula.Const(x.n)
     def apply(x: String): MoneyFormula = MoneyFormula.Param(x)
